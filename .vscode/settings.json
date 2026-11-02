@@ -1,0 +1,30 @@
+{
+  "intelephense.format.enable": false,
+  "[php]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false
+  },
+  "[blade]": {
+    "editor.tabSize": 2
+  },
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.php$",
+        "cmd": "${workspaceFolder}/vendor/bin/pint ${file}"
+      }
+    ]
+  },
+  "intelephense.files.exclude": ["**/vendor/_laravel_ide/_request.php"],
+
+  "prettier.enable": false,
+
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "always"
+  },
+
+  "oxc.fmt.disableNestedConfig": true
+}
