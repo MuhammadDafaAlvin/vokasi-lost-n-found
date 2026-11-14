@@ -12,9 +12,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->enum('type', ['lost', 'found']);
 
@@ -28,10 +26,7 @@ return new class extends Migration
 
             $table->string('image_path')->nullable();
 
-            $table->enum('status', [
-                'active',
-                'resolved'
-            ])->default('active');
+            $table->enum('status', ['active', 'resolved'])->default('active');
 
             $table->boolean('is_hidden')
                 ->default(false);
