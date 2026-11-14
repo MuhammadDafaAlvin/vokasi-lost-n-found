@@ -63,6 +63,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 ])]
 class Report extends Model
 {
+    public const int MAX_LENGTH_TITLE = 50;
+
+    public const int MAX_LENGTH_CATEGORY = 50;
+
+    public const int MAX_LENGTH_COLOR = 50;
+
+    public const int MAX_LENGTH_LOCATION = 150;
+
     /**
      * Get the model's attribute casting definitions.
      */
@@ -75,7 +83,7 @@ class Report extends Model
     }
 
     /**
-     * Get the user who owns the report.
+     * Get the user that owns the report.
      *
      * @return BelongsTo<User, $this>
      */
@@ -85,7 +93,7 @@ class Report extends Model
     }
 
     /**
-     * Get the comments belonging to the report.
+     * Get the comments for the report.
      *
      * @return HasMany<Comment, $this>
      */

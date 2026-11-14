@@ -47,6 +47,14 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public const int MAX_LENGTH_NAME = 50;
+
+    public const int MAX_LENGTH_USERNAME = 20;
+
+    public const int MAX_LENGTH_EMAIL = 50;
+
+    public const int MIN_LENGTH_PASSWORD = 8;
+
     /**
      * The attributes that should be hidden for serialization.
      *
