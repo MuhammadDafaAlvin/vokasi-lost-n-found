@@ -9,3 +9,4 @@ Route::middleware(['auth', 'verified', 'admin'])
     ->group(function () {
         // Route khusus admin
     });
+Route::inertia('/', 'welcome-page')->name('home');
