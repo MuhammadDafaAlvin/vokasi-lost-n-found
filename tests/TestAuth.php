@@ -23,18 +23,34 @@ trait TestAuth
     }
 
     /**
-     * Seed a user with role superadmin.
+     * Seed a user with role admin.
      */
-    public function createSuperAdmin(): User
+    public function createAdmin(): User
     {
         return User::factory()->role(Role::ADMIN->value)->create();
     }
 
     /**
-     * Seed and authenticate a user with role superadmin.
+     * Seed a user with role member.
      */
-    public function actingAsSuperAdmin(): void
+    public function createMember(): User
     {
-        $this->authenticate($this->createSuperAdmin());
+        return User::factory()->role(Role::MEMBER->value)->create();
+    }
+
+    /**
+     * Seed and authenticate a user with role admin.
+     */
+    public function actingAsAdmin(): void
+    {
+        $this->authenticate($this->createAdmin());
+    }
+
+    /**
+     * Seed and authenticate a user with role member.
+     */
+    public function actingAsMember(): void
+    {
+        $this->authenticate($this->createMember());
     }
 }
