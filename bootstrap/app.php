@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Role;
 use App\Http\Middleware\EnsureUserIsAdmin;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
@@ -20,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
         ]);
         $middleware->alias([
-            'admin' => EnsureUserIsAdmin::class,
+            Role::ADMIN->value => EnsureUserIsAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
