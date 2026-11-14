@@ -1,6 +1,8 @@
 
 <?php
 
+use App\Enums\Status;
+use App\Enums\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +16,7 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
-            $table->enum('type', ['lost', 'found']);
+            $table->enum('type', [Type::LOST->value, Type::FOUND->value])->default(Type::LOST->value);
 
             $table->string('title', 150);
             $table->string('category', 50);
@@ -26,10 +28,9 @@ return new class extends Migration
 
             $table->string('image_path')->nullable();
 
-            $table->enum('status', ['active', 'resolved'])->default('active');
+            $table->enum('status', [Status::ACTIVE->value, Status::RESOLVED->value])->default(Status::ACTIVE->value);
 
-            $table->boolean('is_hidden')
-                ->default(false);
+            $table->boolean('is_hidden')->default(false);
 
             $table->timestamps();
 

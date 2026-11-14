@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Role;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -17,10 +18,10 @@ use Illuminate\Notifications\Notifiable;
  * @property string $email
  * @property string|null $email_verified_at
  * @property string $password
+ * @property string $role
  * @property string|null $remember_token
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property string $role
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  *
@@ -56,8 +57,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Check if the user is an admin.
+     */
     public function isAdmin(): bool
     {
-        return $this->role === 'admin';
+        return $this->role === Role::ADMIN->value;
     }
 }
