@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
 class AuthRegisterRequest extends FormRequest
 {
@@ -26,8 +25,8 @@ class AuthRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:'.User::MAX_LENGTH_NAME,
-            'email' => 'required|string|email|max:'.User::MAX_LENGTH_EMAIL.'|unique:users,email|in:'.implode(',', config('auth.unesa_email_domains')),
-            'password' => ['required', 'confirmed', Password::min(User::MIN_LENGTH_PASSWORD)],
+            'email' => 'required|string|email|max:'.User::MAX_LENGTH_EMAIL.'|unique:users,email',
+            'password' => 'required|confirmed|min:'.User::MIN_LENGTH_PASSWORD,
         ];
     }
 }

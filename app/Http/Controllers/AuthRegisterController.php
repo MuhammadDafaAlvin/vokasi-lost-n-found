@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Role;
 use App\Http\Requests\AuthRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +19,7 @@ class AuthRegisterController extends Controller
     public function create(): Response
     {
         return Inertia::render('auth/register', [
-            'registrationAvailable' => config('auth.unesa_email_domains') !== [],
+            'registrationAvailable' => config('auth.unesa_email_domains', []) !== [],
         ]);
     }
 
@@ -36,6 +37,7 @@ class AuthRegisterController extends Controller
         $validated = $request->validated();
 
         $domains = config('auth.unesa_email_domains', []);
+
         $emailDomain = strtolower((string) substr(strrchr($validated['email'], '@') ?: '', 1));
 
         if ($domains === [] || ! in_array($emailDomain, $domains, true)) {
@@ -48,6 +50,7 @@ class AuthRegisterController extends Controller
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
+        $user->role = Role::MEMBER->value;
         $user->save();
 
         Auth::login($user);

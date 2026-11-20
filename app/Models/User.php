@@ -41,7 +41,7 @@ use Illuminate\Notifications\Notifiable;
  *
  * @mixin \Eloquent
  */
-#[Fillable(['name', 'email', 'password', 'role'])]
+#[Fillable(['name', 'email', 'password'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */

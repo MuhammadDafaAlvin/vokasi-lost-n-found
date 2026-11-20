@@ -15,7 +15,7 @@ class EnsureUserIsAdmin
         $user = $request->user();
 
         if (! $user || ! $user->isAdmin()) {
-            abort(403, 'Anda tidak memiliki akses.');
+            abort(403);
         }
 
         return $next($request);

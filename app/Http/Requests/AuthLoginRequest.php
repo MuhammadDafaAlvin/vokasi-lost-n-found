@@ -12,7 +12,7 @@ class AuthLoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,7 @@ class AuthLoginRequest extends FormRequest
         return [
             'email' => 'required|string|email',
             'password' => 'required|string',
+            'remember' => 'sometimes|boolean',
         ];
     }
 }

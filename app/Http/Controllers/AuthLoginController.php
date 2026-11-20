@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthLoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +25,12 @@ class AuthLoginController extends Controller
      */
     public function store(AuthLoginRequest $request): RedirectResponse
     {
-        $validated = $request->validated();
+        $credentials = $request->validated();
+        $credentials['email'] = strtolower(
+            (string) $credentials['email'],
+        );
 
-        $validated['email'] = strtolower((string) $validated['email']);
-
-        if (! Auth::attempt($validated, $request->boolean('remember'))) {
+        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()->withErrors([
                 'email' => 'Email atau password tidak sesuai.',
             ])->onlyInput('email');
@@ -36,7 +38,13 @@ class AuthLoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('home'));
+        $user = Auth::user();
+
+        if ($user instanceof User && $user->isAdmin()) {
+            return redirect()->route('admin.report.index');
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -50,6 +58,6 @@ class AuthLoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Anda berhasil keluar.');
+        return redirect()->route('login.create');
     }
 }
