@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $validated['email'])->first();
 
-        if (!$user || !Hash::check($validated['password'], $user->password)) {
+        if (! $user || ! Hash::check($validated['password'], $user->password)) {
             return response()->json([
                 'message' => 'Email atau password salah',
             ], 401);
@@ -56,12 +56,11 @@ class AuthController extends Controller
     }
 
     // Logout
-    public function logout(Request $request): JsonResponse
+    public function logout(Request $request): void
     {
-        $request->user()->currentAccessToken()->delete();
+        /** @var User $user */
+        $user = $request->user();
 
-        return response()->json([
-            'message' => 'Logout berhasil',
-        ], 200);
+        $user->tokens()->delete();
     }
 }
