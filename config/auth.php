@@ -114,4 +114,14 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Unesa Email Domains
+    |--------------------------------------------------------------------------
+    |
+    | This option defines the allowed email domains for registration.
+    | You may change these values as required, but they're a perfect start for most applications.
+    |
+    */
+    'unesa_email_domains' => explode(',', (string) env('UNESA_EMAIL_DOMAINS', 'mhs.unesa.ac.id,unesa.ac.id')),
 ];
