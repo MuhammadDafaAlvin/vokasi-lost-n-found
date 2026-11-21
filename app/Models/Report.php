@@ -72,6 +72,11 @@ class Report extends Model
         'is_hidden' => false,
     ];
 
+    /**
+     * Attributes appended when the model is serialized.
+     *
+     * @var list<string>
+     */
     protected $appends = ['image_url'];
 
     /**
@@ -98,7 +103,7 @@ class Report extends Model
     }
 
     /**
-     * Get the comments attached to the report.
+     * Get the comments for the report.
      *
      * @return HasMany<Comment, $this>
      */

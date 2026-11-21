@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Enums\Status;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
+use App\Models\Comment;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -18,6 +20,9 @@ use RuntimeException;
 
 class ReportController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request): Response
     {
         $this->authorize('viewAny', Report::class);
@@ -127,13 +132,38 @@ class ReportController extends Controller
     public function show(Report $report): Response
     {
         $this->authorize('view', $report);
-        $report->load('user:id,name');
+
+        $report->load([
+            'user:id,name',
+            'comments' => static function (HasMany $comments): void {
+                $comments->with('user:id,name');
+                $comments->orderBy('created_at')->orderBy('id');
+            },
+        ]);
+
         $user = $this->authenticatedUser(request());
+
+        $comments = $report->comments->map(
+            static fn (Comment $comment): array => [
+                'id' => $comment->id,
+                'report_id' => $comment->report_id,
+                'user_id' => $comment->user_id,
+                'body' => $comment->body,
+                'created_at' => $comment->created_at?->toIso8601String() ?? '',
+                'user' => [
+                    'id' => $comment->user->id,
+                    'name' => $comment->user->name,
+                ],
+                'canDelete' => $user->can('delete', $comment),
+            ],
+        )->values();
 
         return Inertia::render('report/show', [
             'report' => $report,
             'canEdit' => $user->can('update', $report),
             'canResolve' => $user->can('resolve', $report),
+            'canComment' => $user->can('create', [Comment::class, $report]),
+            'comments' => $comments,
         ]);
     }
 
@@ -147,9 +177,7 @@ class ReportController extends Controller
         ]);
     }
 
-    public function update(
-        UpdateReportRequest $request,
-        Report $report,
+    public function update(UpdateReportRequest $request, Report $report,
     ): RedirectResponse {
         $this->authorize('update', $report);
 

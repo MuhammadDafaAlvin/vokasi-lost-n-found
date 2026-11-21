@@ -1,11 +1,16 @@
 <script setup lang="ts">
   import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+  import CommentForm from '@/components/comments/comment-form.vue';
+  import CommentList from '@/components/comments/comment-list.vue';
   import reportRoutes from '@/routes/report';
+  import type { ReportComment } from '@/types/comment';
   import type { Report } from '@/types/report';
 
   const props = defineProps<{
+    canComment: boolean;
     canEdit: boolean;
     canResolve: boolean;
+    comments: ReportComment[];
     report: Report;
   }>();
 
@@ -75,7 +80,9 @@
           </span>
         </div>
 
-        <h1 class="text-3xl font-semibold">{{ report.title }}</h1>
+        <h1 class="text-3xl font-semibold">
+          {{ report.title }}
+        </h1>
 
         <dl class="grid gap-4 sm:grid-cols-2">
           <div>
@@ -126,6 +133,7 @@
             v-if="canResolve"
             class="rounded-lg bg-green-700 px-4 py-2 text-white disabled:opacity-50"
             :disabled="statusForm.processing"
+            type="button"
             @click="resolveReport"
           >
             Tandai selesai
@@ -133,5 +141,19 @@
         </div>
       </div>
     </article>
+
+    <section class="mt-8 rounded-xl border bg-white p-6">
+      <h2 class="mb-5 text-xl font-semibold">Komentar</h2>
+
+      <CommentList :comments="comments" :report-id="report.id" />
+
+      <div class="mt-6 border-t pt-6">
+        <CommentForm v-if="canComment" :report-id="report.id" />
+
+        <p v-else class="text-sm text-gray-600">
+          Komentar baru tidak tersedia untuk laporan tersembunyi atau selesai.
+        </p>
+      </div>
+    </section>
   </main>
 </template>

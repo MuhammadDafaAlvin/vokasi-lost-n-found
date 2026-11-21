@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthLoginController;
 use App\Http\Controllers\AuthRegisterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,12 @@ Route::middleware('auth')->group(function (): void {
         Route::patch('/{report}/status', 'updateStatus')->whereNumber('report')->name('status.update');
         Route::get('/', 'index')->name('index');
     });
+
+    Route::post('/reports/{report}/comments', [CommentController::class, 'store'])->whereNumber('report')->name('comments.store');
+    Route::delete('/reports/{report}/comments/{comment}', [CommentController::class, 'destroy'])
+        ->whereNumber('report')
+        ->whereNumber('comment')
+        ->name('comments.destroy');
 
     require base_path('routes/modules/admin.php');
 });
