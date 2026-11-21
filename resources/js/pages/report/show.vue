@@ -55,7 +55,7 @@
         v-if="report.image_url"
         :src="report.image_url"
         :alt="`Foto ${report.title}`"
-        class="max-h-[28rem] w-full object-cover"
+        class="max-h-112 w-full object-cover"
       />
 
       <div class="space-y-5 p-6">

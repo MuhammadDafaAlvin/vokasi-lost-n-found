@@ -23,7 +23,7 @@ class ReportPolicy
 
     public function view(User $user, Report $report): bool
     {
-        return ! $report->is_hidden || $user->id === $report->user_id;
+        return ! $report->is_hidden || $user->id === $report->user_id || $user->isAdmin();
     }
 
     public function create(User $user): bool
@@ -38,7 +38,11 @@ class ReportPolicy
 
     public function resolve(User $user, Report $report): bool
     {
-        return $user->id === $report->user_id
-            && $report->status === Status::ACTIVE->value;
+        return $user->id === $report->user_id && $report->status === Status::ACTIVE->value;
+    }
+
+    public function moderate(User $user, Report $report): bool
+    {
+        return $user->isAdmin();
     }
 }
