@@ -25,15 +25,13 @@ class AuthLoginController extends Controller
      */
     public function store(AuthLoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validated();
-        $credentials['email'] = strtolower(
-            (string) $credentials['email'],
-        );
+        $credentials = $request->safe()->only(['email', 'password']);
+        $credentials['email'] = strtolower((string) $credentials['email']);
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            return back()->withErrors([
-                'email' => 'Email atau password tidak sesuai.',
-            ])->onlyInput('email');
+            return back()
+                ->withErrors(['email' => 'Email atau password tidak sesuai.'])
+                ->onlyInput('email');
         }
 
         $request->session()->regenerate();
