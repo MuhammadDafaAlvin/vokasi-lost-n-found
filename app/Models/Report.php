@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Storage;
  * @property-read string|null $image_url
  * @property-read User $user
  *
+ * @method static \Database\Factories\ReportFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report query()

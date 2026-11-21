@@ -31,7 +31,7 @@
   <Head title="Moderasi Laporan" />
   <AppHeader />
   <main class="mx-auto min-h-screen max-w-7xl px-6 py-10">
-        <header class="mb-6">
+    <header class="mb-6">
       <h1 class="text-3xl font-semibold">Moderasi laporan</h1>
       <p class="mt-2 text-gray-600">
         Tinjau laporan, lalu sembunyikan atau tampilkan sesuai kebutuhan.
