@@ -26,7 +26,7 @@
       </div>
 
       <Link
-        class="rounded-lg bg-blue-700 px-4 py-2 text-white"
+        class="rounded-lg bg-orange-500 px-4 py-2 text-white"
         :href="reportRoutes.create().url"
       >
         Buat laporan

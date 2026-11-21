@@ -7,6 +7,7 @@ use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -17,21 +18,67 @@ use RuntimeException;
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $this->authorize('viewAny', Report::class);
 
+        $filters = $this->normalizeFilters($request);
+        $reports = Report::query()
+            ->where('is_hidden', false)
+            ->when($filters['q'] !== '', function (Builder $query) use ($filters): void {
+                $search = '%'.$filters['q'].'%';
+
+                $query->where(function (Builder $searchQuery) use ($search): void {
+                    $searchQuery
+                        ->where('title', 'like', $search)
+                        ->orWhere('description', 'like', $search);
+                });
+            })
+            ->when($filters['type'] !== '', function (Builder $query) use ($filters): void {
+                $query->where('type', $filters['type']);
+            })
+            ->when($filters['category'] !== '', function (Builder $query) use ($filters): void {
+                $query->where('category', $filters['category']);
+            })
+            ->with('user:id,name')
+            ->orderByDesc('created_at')
+            ->orderByDesc('id');
+
         return Inertia::render('report/index', [
-            'reports' => Report::query()
-                ->where('is_hidden', false)
-                ->with('user:id,name')
-                ->orderByDesc('event_date')
-                ->orderByDesc('id')
-                ->paginate(12),
+            'reports' => $reports
+                ->paginate(12)
+                ->appends(array_filter(
+                    $filters,
+                    static fn (string $value): bool => $value !== '',
+                )),
+            'filters' => $filters,
+            'categories' => config('report.categories', []),
         ]);
+    }
+
+    /**
+     * @return array{q: string, type: string, category: string}
+     */
+    private function normalizeFilters(Request $request): array
+    {
+        $rawQuery = $request->query('q');
+        $rawType = $request->query('type');
+        $rawCategory = $request->query('category');
+        $categories = (array) config('report.categories', []);
+
+        return [
+            'q' => is_string($rawQuery)
+                ? mb_substr(trim($rawQuery), 0, 100)
+                : '',
+            'type' => is_string($rawType)
+                && in_array($rawType, ['lost', 'found'], true)
+                    ? $rawType
+                    : '',
+            'category' => is_string($rawCategory)
+                && in_array($rawCategory, $categories, true)
+                    ? $rawCategory
+                    : '',
+        ];
     }
 
     public function mine(Request $request): Response
@@ -47,9 +94,6 @@ class ReportController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): Response
     {
         $this->authorize('create', Report::class);
@@ -59,9 +103,6 @@ class ReportController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreReportRequest $request): RedirectResponse
     {
         $this->authorize('create', Report::class);
@@ -83,9 +124,6 @@ class ReportController extends Controller
             ->with('success', 'Laporan berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Report $report): Response
     {
         $this->authorize('view', $report);
@@ -99,9 +137,6 @@ class ReportController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Report $report): Response
     {
         $this->authorize('update', $report);
@@ -112,11 +147,10 @@ class ReportController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateReportRequest $request, Report $report): RedirectResponse
-    {
+    public function update(
+        UpdateReportRequest $request,
+        Report $report,
+    ): RedirectResponse {
         $this->authorize('update', $report);
 
         $validated = $request->validated();
@@ -171,13 +205,5 @@ class ReportController extends Controller
         }
 
         return $path;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id): void
-    {
-        //
     }
 }

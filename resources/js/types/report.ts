@@ -2,6 +2,12 @@ export type ReportType = 'lost' | 'found';
 
 export type ReportStatus = 'active' | 'resolved';
 
+export type ReportFilters = {
+  q: string;
+  type: ReportType | '';
+  category: string;
+};
+
 export type ReportUser = {
   id: number;
   name: string;
