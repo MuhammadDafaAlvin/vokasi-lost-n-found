@@ -41,9 +41,9 @@ class AuthRegisterController extends Controller
         $emailDomain = strtolower((string) substr(strrchr($validated['email'], '@') ?: '', 1));
 
         if ($domains === [] || ! in_array($emailDomain, $domains, true)) {
-            return back()->withErrors([
-                'email' => 'Gunakan alamat email dengan domain UNESA yang terdaftar.',
-            ])->withInput($request->only('name', 'email'));
+            return back()
+                ->withErrors(['email' => 'Gunakan alamat email dengan domain UNESA yang terdaftar.'])
+                ->withInput($request->only('name', 'email'));
         }
 
         $user = new User;
