@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Collection;
@@ -48,22 +49,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @mixin \Eloquent
  */
-#[Fillable([
-    'user_id',
-    'type',
-    'title',
-    'category',
-    'description',
-    'color',
-    'location',
-    'event_date',
-    'image_path',
-    'status',
-    'is_hidden',
-])]
+#[Fillable(['type', 'title', 'category', 'description', 'color', 'location', 'event_date'])]
 class Report extends Model
 {
-    public const int MAX_LENGTH_TITLE = 50;
+    public const int MAX_LENGTH_TITLE = 150;
 
     public const int MAX_LENGTH_CATEGORY = 50;
 
@@ -72,7 +61,19 @@ class Report extends Model
     public const int MAX_LENGTH_LOCATION = 150;
 
     /**
-     * Get the model's attribute casting definitions.
+     * Default values used when creating a report.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'status' => Status::ACTIVE->value,
+        'is_hidden' => false,
+    ];
+
+    /**
+     * Get the attribute casts for the model.
+     *
+     * @return array<string, string>
      */
     protected function casts(): array
     {
@@ -83,7 +84,7 @@ class Report extends Model
     }
 
     /**
-     * Get the user that owns the report.
+     * Get the user who owns the report.
      *
      * @return BelongsTo<User, $this>
      */
@@ -93,7 +94,7 @@ class Report extends Model
     }
 
     /**
-     * Get the comments for the report.
+     * Get the comments attached to the report.
      *
      * @return HasMany<Comment, $this>
      */
