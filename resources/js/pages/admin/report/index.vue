@@ -14,6 +14,12 @@
   defineProps<{
     filters: AdminReportFiltersData;
     reports: AdminReportPagination;
+    stats: {
+      total: number;
+      active: number;
+      resolved: number;
+      hidden: number;
+    };
   }>();
 
   const page = usePage<{
@@ -45,7 +51,38 @@
     >
       {{ page.props.flash.success }}
     </p>
+    <section
+      class="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+      aria-label="Ringkasan laporan"
+    >
+      <article class="rounded-xl border border-slate-200 bg-white p-5">
+        <p class="text-sm text-slate-500">Semua laporan</p>
+        <p class="mt-2 text-3xl font-semibold text-slate-900">
+          {{ stats.total }}
+        </p>
+      </article>
 
+      <article class="rounded-xl border border-slate-200 bg-white p-5">
+        <p class="text-sm text-slate-500">Laporan aktif</p>
+        <p class="mt-2 text-3xl font-semibold text-blue-700">
+          {{ stats.active }}
+        </p>
+      </article>
+
+      <article class="rounded-xl border border-slate-200 bg-white p-5">
+        <p class="text-sm text-slate-500">Laporan selesai</p>
+        <p class="mt-2 text-3xl font-semibold text-green-700">
+          {{ stats.resolved }}
+        </p>
+      </article>
+
+      <article class="rounded-xl border border-slate-200 bg-white p-5">
+        <p class="text-sm text-slate-500">Disembunyikan</p>
+        <p class="mt-2 text-3xl font-semibold text-amber-700">
+          {{ stats.hidden }}
+        </p>
+      </article>
+    </section>
     <AdminReportFilters :filters="filters" />
     <AdminReportTable :reports="reports" />
   </main>
