@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin \Eloquent
  */
-#[Fillable(['report_id', 'user_id', 'body'])]
+#[Fillable(['body'])]
 class Comment extends Model
 {
     /**
