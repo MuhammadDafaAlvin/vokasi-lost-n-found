@@ -40,4 +40,5 @@ Route::middleware('auth')->group(function (): void {
         ->name('comments.destroy');
 
     require base_path('routes/modules/admin.php');
+
 });

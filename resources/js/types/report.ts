@@ -40,3 +40,18 @@ export type Pagination = {
   total: number;
   data: Report[];
 };
+
+export type AdminReport = Report & {
+  user: ReportUser;
+};
+
+export type AdminReportFilters = {
+  q: string;
+  type: ReportType | '';
+  status: ReportStatus | '';
+  visibility: 'visible' | 'hidden' | '';
+};
+
+export type AdminReportPagination = Omit<Pagination, 'data'> & {
+  data: AdminReport[];
+};
