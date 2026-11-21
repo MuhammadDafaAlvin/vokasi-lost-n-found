@@ -45,7 +45,7 @@
     v-if="reports.data.length"
     class="overflow-x-auto rounded-xl border bg-white"
   >
-    <table class="w-full min-w-[900px] divide-y text-left text-sm">
+    <table class="w-full min-w-225 divide-y text-left text-sm">
       <thead class="bg-gray-50 text-xs text-gray-600 uppercase">
         <tr>
           <th class="px-4 py-3">Barang</th>
