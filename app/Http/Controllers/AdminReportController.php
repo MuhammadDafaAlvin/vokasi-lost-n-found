@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Models\Report;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -48,6 +49,13 @@ class AdminReportController extends Controller
             ->orderByDesc('created_at')
             ->orderByDesc('id');
 
+        $stats = [
+            'total' => Report::query()->count(),
+            'active' => Report::query()->where('status', Status::ACTIVE->value)->count(),
+            'resolved' => Report::query()->where('status', Status::RESOLVED->value)->count(),
+            'hidden' => Report::query()->where('is_hidden', true)->count(),
+        ];
+
         return Inertia::render('admin/report/index', [
             'reports' => $reports
                 ->paginate(12)
@@ -56,6 +64,7 @@ class AdminReportController extends Controller
                     static fn (string $value): bool => $value !== '',
                 )),
             'filters' => $filters,
+            'stats' => $stats,
         ]);
     }
 
