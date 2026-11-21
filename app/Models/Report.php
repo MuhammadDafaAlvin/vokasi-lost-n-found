@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Enums\Status;
 use Carbon\CarbonImmutable;
+use Database\Factories\ReportFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -31,6 +33,7 @@ use Illuminate\Support\Facades\Storage;
  * @property-read string|null $image_url
  * @property-read User $user
  *
+ * @method static \Database\Factories\ReportFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report query()
@@ -54,6 +57,9 @@ use Illuminate\Support\Facades\Storage;
 #[Fillable(['type', 'title', 'category', 'description', 'color', 'location', 'event_date'])]
 class Report extends Model
 {
+    /** @use HasFactory<ReportFactory> */
+    use HasFactory;
+
     public const int MAX_LENGTH_TITLE = 150;
 
     public const int MAX_LENGTH_CATEGORY = 50;

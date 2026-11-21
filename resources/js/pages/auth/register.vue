@@ -2,8 +2,11 @@
   import { Head, Link, useForm } from '@inertiajs/vue3';
   import loginRoutes from '@/routes/login';
   import registerRoutes from '@/routes/register';
+  import AppHeader from '@/components/app-header.vue';
 
-  defineProps<{ registrationAvailable: boolean }>();
+  defineProps<{
+    registrationAvailable: boolean;
+  }>();
 
   const form = useForm({
     name: '',
@@ -12,23 +15,40 @@
     password_confirmation: '',
   });
 
-  const submit = (): void => form.post(registerRoutes.store().url);
+  function submit(): void {
+    form.post(registerRoutes.store().url);
+  }
 </script>
 
 <template>
   <Head title="Daftar" />
-  <main class="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6">
-    <h1 class="text-2xl font-semibold">Buat akun</h1>
-    <p v-if="!registrationAvailable" class="mt-3 text-sm text-red-700">
-      Pendaftaran belum aktif. Periksa konfigurasi domain email.
+  <main
+    class="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-10"
+  >
+    <h1 class="text-2xl font-semibold text-slate-900">
+      Buat akun Lost &amp; Found
+    </h1>
+    <p class="mt-2 text-sm text-slate-600">
+      Daftar menggunakan email yang diizinkan oleh kampus.
     </p>
+
+    <p
+      v-if="!registrationAvailable"
+      class="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800"
+      role="status"
+    >
+      Pendaftaran belum tersedia. Periksa konfigurasi domain email.
+    </p>
+
     <form class="mt-6 space-y-4" @submit.prevent="submit">
       <div>
-        <label class="block text-sm font-medium" for="name">Nama</label>
+        <label class="block text-sm font-medium text-slate-700" for="name">
+          Nama
+        </label>
         <input
           id="name"
           v-model="form.name"
-          class="mt-1 w-full rounded border px-3 py-2"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="text"
           autocomplete="name"
           required
@@ -37,12 +57,15 @@
           {{ form.errors.name }}
         </p>
       </div>
+
       <div>
-        <label class="block text-sm font-medium" for="email">Email</label>
+        <label class="block text-sm font-medium text-slate-700" for="email">
+          Email
+        </label>
         <input
           id="email"
           v-model="form.email"
-          class="mt-1 w-full rounded border px-3 py-2"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="email"
           autocomplete="email"
           required
@@ -51,14 +74,15 @@
           {{ form.errors.email }}
         </p>
       </div>
+
       <div>
-        <label class="block text-sm font-medium" for="password">
+        <label class="block text-sm font-medium text-slate-700" for="password">
           Password
         </label>
         <input
           id="password"
           v-model="form.password"
-          class="mt-1 w-full rounded border px-3 py-2"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="password"
           autocomplete="new-password"
           required
@@ -67,29 +91,41 @@
           {{ form.errors.password }}
         </p>
       </div>
+
       <div>
-        <label class="block text-sm font-medium" for="password_confirmation">
+        <label
+          class="block text-sm font-medium text-slate-700"
+          for="password_confirmation"
+        >
           Konfirmasi password
         </label>
         <input
           id="password_confirmation"
           v-model="form.password_confirmation"
-          class="mt-1 w-full rounded border px-3 py-2"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="password"
           autocomplete="new-password"
           required
         />
       </div>
+
       <button
-        class="w-full rounded bg-orange-500 px-4 py-2 text-white disabled:opacity-50"
+        class="w-full rounded-lg bg-orange-600 px-4 py-2 font-semibold text-white hover:bg-orange-700 disabled:opacity-50"
         :disabled="form.processing || !registrationAvailable"
+        type="submit"
       >
-        Daftar
+        {{ form.processing ? 'Memproses...' : 'Daftar' }}
       </button>
     </form>
-    <p class="mt-4 text-sm">
+
+    <p class="mt-5 text-sm text-slate-600">
       Sudah punya akun?
-      <Link class="underline" :href="loginRoutes.create().url">Masuk</Link>
+      <Link
+        class="font-medium text-orange-700 underline"
+        :href="loginRoutes.create().url"
+      >
+        Masuk
+      </Link>
     </p>
   </main>
 </template>

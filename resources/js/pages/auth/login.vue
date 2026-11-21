@@ -9,20 +9,33 @@
     remember: false,
   });
 
-  const submit = (): void => form.post(loginRoutes.store().url);
+  function submit(): void {
+    form.post(loginRoutes.store().url);
+  }
 </script>
 
 <template>
   <Head title="Masuk" />
-  <main class="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6">
-    <h1 class="text-2xl font-semibold">Masuk ke Lost &amp; Found</h1>
+
+  <main
+    class="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-10"
+  >
+    <h1 class="text-2xl font-semibold text-slate-900">
+      Masuk ke Lost &amp; Found
+    </h1>
+    <p class="mt-2 text-sm text-slate-600">
+      Gunakan akun Fakultas Vokasi Anda untuk melanjutkan.
+    </p>
+
     <form class="mt-6 space-y-4" @submit.prevent="submit">
       <div>
-        <label class="block text-sm font-medium" for="email">Email</label>
+        <label class="block text-sm font-medium text-slate-700" for="email">
+          Email
+        </label>
         <input
           id="email"
           v-model="form.email"
-          class="mt-1 w-full rounded border px-3 py-2"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="email"
           autocomplete="email"
           required
@@ -31,14 +44,15 @@
           {{ form.errors.email }}
         </p>
       </div>
+
       <div>
-        <label class="block text-sm font-medium" for="password">
+        <label class="block text-sm font-medium text-slate-700" for="password">
           Password
         </label>
         <input
           id="password"
           v-model="form.password"
-          class="mt-1 w-full rounded border px-3 py-2"
+          class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="password"
           autocomplete="current-password"
           required
@@ -47,20 +61,27 @@
           {{ form.errors.password }}
         </p>
       </div>
-      <label class="flex items-center gap-2 text-sm">
+
+      <label class="flex items-center gap-2 text-sm text-slate-600">
         <input v-model="form.remember" type="checkbox" />
         Ingat saya
       </label>
+
       <button
-        class="w-full rounded bg-orange-500 px-4 py-2 text-white disabled:opacity-50"
+        class="w-full rounded-lg bg-orange-600 px-4 py-2 font-semibold text-white hover:bg-orange-700 disabled:opacity-50"
         :disabled="form.processing"
+        type="submit"
       >
-        Masuk
+        {{ form.processing ? 'Memproses...' : 'Masuk' }}
       </button>
     </form>
-    <p class="mt-4 text-sm">
+
+    <p class="mt-5 text-sm text-slate-600">
       Belum punya akun?
-      <Link class="underline" :href="registerRoutes.create().url">
+      <Link
+        class="font-medium text-orange-700 underline"
+        :href="registerRoutes.create().url"
+      >
         Daftar
       </Link>
     </p>

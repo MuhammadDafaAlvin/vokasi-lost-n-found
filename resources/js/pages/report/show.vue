@@ -5,6 +5,7 @@
   import reportRoutes from '@/routes/report';
   import type { ReportComment } from '@/types/comment';
   import type { Report } from '@/types/report';
+  import AppHeader from '@/components/app-header.vue';
 
   const props = defineProps<{
     canComment: boolean;
@@ -33,7 +34,7 @@
 
 <template>
   <Head :title="report.title" />
-
+  <AppHeader />
   <main class="mx-auto max-w-4xl px-6 py-10">
     <Link
       class="text-sm text-blue-700 underline"

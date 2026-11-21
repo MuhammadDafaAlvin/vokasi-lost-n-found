@@ -3,6 +3,7 @@
   import ReportForm from '@/components/reports/report-form.vue';
   import reportRoutes from '@/routes/report';
   import type { Report } from '@/types/report';
+  import AppHeader from '@/components/app-header.vue';
 
   const props = defineProps<{
     categories: string[];
@@ -12,7 +13,7 @@
 
 <template>
   <Head :title="`Edit ${report.title}`" />
-
+  <AppHeader />
   <main class="mx-auto max-w-3xl px-6 py-10">
     <Link
       class="text-sm text-blue-700 underline"

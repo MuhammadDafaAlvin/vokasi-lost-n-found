@@ -2,13 +2,14 @@
   import { Head, Link } from '@inertiajs/vue3';
   import ReportForm from '@/components/reports/report-form.vue';
   import reportRoutes from '@/routes/report';
+  import AppHeader from '@/components/app-header.vue';
 
   defineProps<{ categories: string[] }>();
 </script>
 
 <template>
   <Head title="Buat Laporan" />
-
+  <AppHeader />
   <main class="mx-auto max-w-3xl px-6 py-10">
     <Link
       class="text-sm text-blue-700 underline"
