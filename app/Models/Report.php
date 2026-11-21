@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property CarbonImmutable|null $updated_at
  * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
+ * @property-read string|null $image_url
  * @property-read User $user
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Report newModelQuery()
@@ -70,6 +72,8 @@ class Report extends Model
         'is_hidden' => false,
     ];
 
+    protected $appends = ['image_url'];
+
     /**
      * Get the attribute casts for the model.
      *
@@ -101,5 +105,14 @@ class Report extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (! $this->image_path) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($this->image_path);
     }
 }

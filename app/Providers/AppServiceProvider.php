@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Report;
+use App\Policies\ReportPolicy;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('access-admin', fn ($user): bool => $user->isAdmin());
+
+        Gate::policy(Report::class, ReportPolicy::class);
 
         $this->configureDefaults();
     }
