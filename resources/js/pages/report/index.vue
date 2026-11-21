@@ -7,6 +7,7 @@
     Pagination,
     ReportFilters as ReportFiltersData,
   } from '@/types/report';
+  import AppHeader from '@/components/app-header.vue';
 
   defineProps<{
     categories: string[];
@@ -17,7 +18,7 @@
 
 <template>
   <Head title="Daftar Laporan" />
-
+  <AppHeader />
   <main class="mx-auto min-h-screen max-w-6xl px-6 py-10">
     <header class="mb-8 flex flex-wrap items-center justify-between gap-4">
       <div>
@@ -25,21 +26,6 @@
         <p class="mt-2 text-gray-600">
           Lihat barang hilang dan ditemukan di Fakultas Vokasi.
         </p>
-      </div>
-
-      <div class="flex gap-3">
-        <Link
-          class="rounded-lg border px-4 py-2"
-          :href="reportRoutes.mine().url"
-        >
-          Laporan saya
-        </Link>
-        <Link
-          class="rounded-lg bg-orange-500 px-4 py-2 text-white"
-          :href="reportRoutes.create().url"
-        >
-          Buat laporan
-        </Link>
       </div>
     </header>
 

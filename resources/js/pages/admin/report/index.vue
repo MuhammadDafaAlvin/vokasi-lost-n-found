@@ -9,6 +9,7 @@
   } from '@/types/report';
   import { home } from '@/routes';
   import { logout as logoutRoute } from '@/routes/auth';
+  import AppHeader from '@/components/app-header.vue';
 
   defineProps<{
     filters: AdminReportFiltersData;
@@ -28,26 +29,9 @@
 
 <template>
   <Head title="Moderasi Laporan" />
-
+  <AppHeader />
   <main class="mx-auto min-h-screen max-w-7xl px-6 py-10">
-    <nav class="mb-8 flex items-center justify-between border-b pb-4">
-      <Link class="font-semibold" :href="home().url">
-        Lost &amp; Found Vokasi
-      </Link>
-      <div class="flex items-center gap-4 text-sm">
-        <span>{{ page.props.auth.user?.name }} (Admin)</span>
-        <button
-          class="underline disabled:opacity-50"
-          :disabled="logoutForm.processing"
-          type="button"
-          @click="logout"
-        >
-          Keluar
-        </button>
-      </div>
-    </nav>
-
-    <header class="mb-6">
+        <header class="mb-6">
       <h1 class="text-3xl font-semibold">Moderasi laporan</h1>
       <p class="mt-2 text-gray-600">
         Tinjau laporan, lalu sembunyikan atau tampilkan sesuai kebutuhan.

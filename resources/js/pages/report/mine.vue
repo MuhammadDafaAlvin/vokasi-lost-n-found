@@ -3,6 +3,7 @@
   import ReportCard from '@/components/reports/report-card.vue';
   import reportRoutes from '@/routes/report';
   import type { Pagination } from '@/types/report';
+  import AppHeader from '@/components/app-header.vue';
 
   const props = defineProps<{ reports: Pagination }>();
 
@@ -11,7 +12,7 @@
 
 <template>
   <Head title="Laporan Saya" />
-
+  <AppHeader />
   <main class="mx-auto min-h-screen max-w-6xl px-6 py-10">
     <header class="mb-8 flex flex-wrap items-center justify-between gap-4">
       <div>
