@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+  import { Head, usePage } from '@inertiajs/vue3';
   import AdminReportFilters from '@/components/admin/admin-report-filters.vue';
   import AdminReportTable from '@/components/admin/admin-report-table.vue';
   import type { Auth } from '@/types/auth';
@@ -7,7 +7,6 @@
     AdminReportFilters as AdminReportFiltersData,
     AdminReportPagination,
   } from '@/types/report';
-  import { logout as logoutRoute } from '@/routes/auth';
   import AppHeader from '@/components/app-header.vue';
 
   defineProps<{
@@ -25,11 +24,6 @@
     auth: Auth;
     flash: { success: string | null };
   }>();
-  const logoutForm = useForm({});
-
-  function logout(): void {
-    logoutForm.post(logoutRoute().url);
-  }
 </script>
 
 <template>
