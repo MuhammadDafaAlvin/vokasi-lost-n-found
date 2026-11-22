@@ -14,9 +14,6 @@ class AdminReportController extends Controller
     /**
      * Display a listing of the resource.
      */
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request): Response
     {
         $filters = $this->normalizeFilters($request);
