@@ -19,6 +19,8 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
+        $this->withoutVite();
+
         Carbon::setTestNow('2026-08-29T00:08:14.329300Z');
     }
 }
