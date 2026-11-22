@@ -7,7 +7,6 @@
     AdminReportFilters as AdminReportFiltersData,
     AdminReportPagination,
   } from '@/types/report';
-  import { home } from '@/routes';
   import { logout as logoutRoute } from '@/routes/auth';
   import AppHeader from '@/components/app-header.vue';
 
