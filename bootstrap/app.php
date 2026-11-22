@@ -1,8 +1,10 @@
 <?php
 
+use App\Console\Commands\MakeUserAdmin;
 use App\Enums\Role;
 use App\Http\Middleware\EnsureUserIsAdmin;
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -23,9 +25,22 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             Role::ADMIN->value => EnsureUserIsAdmin::class,
         ]);
+        $middleware->redirectUsersTo(static function (Request $request): string {
+            $user = $request->user();
+
+            if ($user instanceof User && $user->isAdmin()) {
+                return route('admin.report.index');
+            }
+
+            return route('home');
+        });
+        $middleware->redirectGuestsTo(static fn (Request $request): string => route('login.create')
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
-        );
-    })->create();
+        //
+    })
+    ->withCommands([
+        MakeUserAdmin::class,
+    ])
+    ->create();

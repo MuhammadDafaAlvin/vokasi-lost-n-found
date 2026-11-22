@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', User::MAX_LENGTH_NAME);
             $table->string('email', User::MAX_LENGTH_EMAIL)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', User::MIN_LENGTH_PASSWORD);
+            $table->string('password');
             $table->enum('role', [Role::ADMIN->value, Role::MEMBER->value])->default(Role::MEMBER->value);
             $table->rememberToken();
             $table->timestamps();
