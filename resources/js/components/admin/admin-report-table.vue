@@ -41,109 +41,146 @@
 </script>
 
 <template>
-  <div
+  <section
     v-if="reports.data.length"
-    class="overflow-x-auto rounded-xl border bg-white"
+    class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
   >
-    <table class="w-full min-w-225 divide-y text-left text-sm">
-      <thead class="bg-gray-50 text-xs text-gray-600 uppercase">
-        <tr>
-          <th class="px-4 py-3">Barang</th>
-          <th class="px-4 py-3">Jenis / kategori</th>
-          <th class="px-4 py-3">Pelapor</th>
-          <th class="px-4 py-3">Tanggal</th>
-          <th class="px-4 py-3">Status</th>
-          <th class="px-4 py-3">Moderasi</th>
-          <th class="px-4 py-3">Aksi</th>
-        </tr>
-      </thead>
+    <div class="overflow-x-auto">
+      <table class="w-full min-w-225 text-left text-sm">
+        <thead class="border-b border-slate-200 bg-slate-50/80">
+          <tr
+            class="text-[11px] font-semibold tracking-wider text-slate-500 uppercase"
+          >
+            <th class="px-5 py-3.5">Barang</th>
+            <th class="px-4 py-3.5">Jenis / kategori</th>
+            <th class="px-4 py-3.5">Pelapor</th>
+            <th class="px-4 py-3.5">Tanggal</th>
+            <th class="px-4 py-3.5">Status</th>
+            <th class="px-4 py-3.5">Moderasi</th>
+            <th class="px-5 py-3.5 text-right">Aksi</th>
+          </tr>
+        </thead>
 
-      <tbody class="divide-y">
-        <tr v-for="report in reports.data" :key="report.id">
-          <td class="px-4 py-4">
-            <Link
-              class="font-medium text-blue-800 underline"
-              :href="reportRoutes.show(report.id).url"
-            >
-              {{ report.title }}
-            </Link>
-          </td>
+        <tbody class="divide-y divide-slate-100">
+          <tr
+            v-for="report in reports.data"
+            :key="report.id"
+            class="text-slate-700 transition-colors hover:bg-slate-50/70"
+          >
+            <td class="px-5 py-4">
+              <Link
+                class="font-semibold text-slate-950 underline decoration-slate-300 underline-offset-4 transition hover:text-blue-700 hover:decoration-blue-300"
+                :href="reportRoutes.show(report.id).url"
+              >
+                {{ report.title }}
+              </Link>
+            </td>
 
-          <td class="px-4 py-4 text-gray-700">
-            <div>{{ reportTypeLabel(report.type) }}</div>
-            <div class="mt-1 text-gray-500">{{ report.category }}</div>
-          </td>
+            <td class="px-4 py-4">
+              <span
+                class="mb-1 inline-flex rounded-md px-2 py-0.5 text-xs font-semibold"
+                :class="
+                  report.type === 'lost'
+                    ? 'bg-orange-50 text-orange-700'
+                    : 'bg-cyan-50 text-cyan-700'
+                "
+              >
+                {{ reportTypeLabel(report.type) }}
+              </span>
+              <div class="text-xs text-slate-500">{{ report.category }}</div>
+            </td>
 
-          <td class="px-4 py-4">{{ report.user.name }}</td>
+            <td class="px-4 py-4 text-slate-700">{{ report.user.name }}</td>
 
-          <td class="px-4 py-4">
-            {{ formattedDate(report.event_date) }}
-          </td>
+            <td class="px-4 py-4 whitespace-nowrap text-slate-600">
+              {{ formattedDate(report.event_date) }}
+            </td>
 
-          <td class="px-4 py-4">
-            {{ reportStatusLabel(report.status) }}
-          </td>
+            <td class="px-4 py-4">
+              <span
+                class="inline-flex rounded-full px-2.5 py-1 text-xs font-semibold"
+                :class="
+                  report.status === 'active'
+                    ? 'bg-blue-50 text-blue-700'
+                    : 'bg-emerald-50 text-emerald-700'
+                "
+              >
+                {{ reportStatusLabel(report.status) }}
+              </span>
+            </td>
 
-          <td class="px-4 py-4">
-            <span
-              class="rounded-full px-2.5 py-1 text-xs font-medium"
-              :class="
-                report.is_hidden
-                  ? 'bg-amber-100 text-amber-800'
-                  : 'bg-green-100 text-green-800'
-              "
-            >
-              {{ report.is_hidden ? 'Disembunyikan' : 'Terlihat' }}
-            </span>
-          </td>
+            <td class="px-4 py-4">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
+                :class="
+                  report.is_hidden
+                    ? 'bg-amber-50 text-amber-700'
+                    : 'bg-slate-100 text-slate-600'
+                "
+              >
+                <span
+                  class="h-1.5 w-1.5 rounded-full"
+                  :class="report.is_hidden ? 'bg-amber-500' : 'bg-emerald-500'"
+                ></span>
+                {{ report.is_hidden ? 'Disembunyikan' : 'Terlihat' }}
+              </span>
+            </td>
 
-          <td class="px-4 py-4">
-            <button
-              class="rounded-lg border px-3 py-2 text-xs font-medium whitespace-nowrap disabled:opacity-50"
-              :disabled="visibilityForm.processing"
-              type="button"
-              @click="toggleVisibility(report.id, report.is_hidden)"
-            >
-              {{
-                visibilityForm.processing
-                  ? 'Memproses...'
-                  : report.is_hidden
-                    ? 'Tampilkan'
-                    : 'Sembunyikan'
-              }}
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <td class="px-5 py-4 text-right">
+              <button
+                class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold whitespace-nowrap text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                :disabled="visibilityForm.processing"
+                type="button"
+                @click="toggleVisibility(report.id, report.is_hidden)"
+              >
+                {{
+                  visibilityForm.processing
+                    ? 'Memproses...'
+                    : report.is_hidden
+                      ? 'Tampilkan'
+                      : 'Sembunyikan'
+                }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <p v-else class="rounded-xl border bg-white p-8 text-center text-gray-600">
-    Tidak ada laporan yang sesuai dengan filter.
-  </p>
+  <section
+    v-else
+    class="rounded-2xl border border-slate-200 bg-white p-10 text-center"
+  >
+    <p class="text-sm font-semibold text-slate-700">
+      Tidak ada laporan yang ditemukan
+    </p>
+    <p class="mt-1 text-xs text-slate-500">
+      Coba ubah atau reset filter pencarian.
+    </p>
+  </section>
 
   <nav
     v-if="reports.last_page > 1"
-    class="mt-6 flex items-center justify-between"
+    class="mt-5 flex items-center justify-between"
     aria-label="Navigasi halaman admin"
   >
     <Link
       v-if="reports.prev_page_url"
-      class="rounded-lg border px-4 py-2"
+      class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
       :href="reports.prev_page_url"
     >
       Sebelumnya
     </Link>
-
     <span v-else></span>
 
-    <span class="text-sm text-gray-600">
+    <span class="text-xs font-medium text-slate-500">
       Halaman {{ reports.current_page }} dari {{ reports.last_page }}
     </span>
 
     <Link
       v-if="reports.next_page_url"
-      class="rounded-lg border px-4 py-2"
+      class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
       :href="reports.next_page_url"
     >
       Berikutnya

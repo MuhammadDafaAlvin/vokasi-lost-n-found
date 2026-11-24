@@ -66,33 +66,55 @@
 
 <template>
   <form
-    class="mb-8 grid gap-4 rounded-xl border bg-white p-5 sm:grid-cols-2 lg:grid-cols-4"
+    class="mb-5 grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-[minmax(220px,1.5fr)_minmax(140px,.7fr)_minmax(140px,.7fr)_auto]"
     role="search"
     @submit.prevent="submit"
   >
-    <div class="sm:col-span-2">
-      <label class="mb-1 block text-sm font-medium" for="report-search">
+    <div>
+      <label
+        class="mb-1.5 block text-xs font-semibold tracking-wide text-slate-500 uppercase"
+        for="report-search"
+      >
         Cari barang
       </label>
-      <input
-        id="report-search"
-        v-model="form.q"
-        class="w-full rounded-lg border px-3 py-2"
-        maxlength="100"
-        name="q"
-        placeholder="Nama atau deskripsi barang"
-        type="search"
-      />
+      <div class="relative">
+        <svg
+          class="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-4.35-4.35m1.35-5.15a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z"
+          />
+        </svg>
+        <input
+          id="report-search"
+          v-model="form.q"
+          class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pr-3 pl-9 text-sm transition outline-none placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
+          maxlength="100"
+          name="q"
+          placeholder="Nama atau deskripsi barang"
+          type="search"
+        />
+      </div>
     </div>
 
     <div>
-      <label class="mb-1 block text-sm font-medium" for="report-type">
+      <label
+        class="mb-1.5 block text-xs font-semibold tracking-wide text-slate-500 uppercase"
+        for="report-type"
+      >
         Jenis laporan
       </label>
       <select
         id="report-type"
         v-model="form.type"
-        class="w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm transition outline-none focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         name="type"
       >
         <option value="">Semua jenis</option>
@@ -102,13 +124,16 @@
     </div>
 
     <div>
-      <label class="mb-1 block text-sm font-medium" for="report-category">
+      <label
+        class="mb-1.5 block text-xs font-semibold tracking-wide text-slate-500 uppercase"
+        for="report-category"
+      >
         Kategori
       </label>
       <select
         id="report-category"
         v-model="form.category"
-        class="w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm transition outline-none focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         name="category"
       >
         <option value="">Semua kategori</option>
@@ -122,16 +147,16 @@
       </select>
     </div>
 
-    <div class="flex flex-wrap gap-3 sm:col-span-2 lg:col-span-4">
+    <div class="flex items-end gap-2 sm:col-span-2 lg:col-span-1">
       <button
-        class="rounded-lg bg-orange-500 px-4 py-2 font-medium text-white disabled:opacity-50"
+        class="h-11 flex-1 rounded-xl bg-orange-600 px-4 text-sm font-semibold text-white transition hover:bg-orange-700 disabled:opacity-50"
         :disabled="form.processing"
         type="submit"
       >
         Cari
       </button>
       <button
-        class="rounded-lg border px-4 py-2 font-medium disabled:opacity-50"
+        class="h-11 rounded-xl border border-slate-200 px-3 text-sm font-medium text-slate-600 transition hover:bg-slate-50 disabled:opacity-50"
         :disabled="form.processing"
         type="button"
         @click="resetFilters"

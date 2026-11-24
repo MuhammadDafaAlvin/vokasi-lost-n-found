@@ -85,7 +85,7 @@
             </div>
             <img
               class="h-14 w-14 object-contain"
-              src="https://statik.unesa.ac.id/profileunesa_konten_statik/uploads/vokasi/gallery/d5a04d59-54ae-4aae-a3dd-f624420c96d4.png"
+              src="/images/logo-web.png"
               alt=""
             />
           </div>

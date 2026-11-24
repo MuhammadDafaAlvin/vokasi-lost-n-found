@@ -13,23 +13,51 @@
 
 <template>
   <Head :title="`Edit ${report.title}`" />
-  <AppHeader />
-  <main class="mx-auto max-w-3xl px-6 py-10">
-    <Link
-      class="text-sm text-blue-700 underline"
-      :href="reportRoutes.show(report.id).url"
-    >
-      Kembali ke detail
-    </Link>
+  <div class="min-h-svh bg-[#f7f8fa] text-slate-900">
+    <AppHeader />
+    <main class="mx-auto max-w-5xl px-5 py-8 sm:px-8 sm:py-10">
+      <Link
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+        :href="reportRoutes.show(report.id).url"
+      >
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+        Kembali ke detail
+      </Link>
 
-    <h1 class="mt-4 mb-6 text-3xl font-semibold">Edit laporan</h1>
+      <header class="mt-5 mb-6">
+        <p class="text-sm font-medium text-orange-700">Perbarui informasi</p>
+        <h1 class="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Edit laporan
+        </h1>
+        <p class="mt-2 max-w-2xl truncate text-sm text-slate-600">
+          {{ report.title }}
+        </p>
+      </header>
 
-    <ReportForm
-      :action-url="reportRoutes.update(props.report.id).url"
-      :categories="categories"
-      method="put"
-      :report="report"
-      submit-label="Simpan perubahan"
-    />
-  </main>
+      <section
+        class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
+      >
+        <ReportForm
+          :action-url="reportRoutes.update(props.report.id).url"
+          :categories="categories"
+          method="put"
+          :report="report"
+          submit-label="Simpan perubahan"
+        />
+      </section>
+    </main>
+  </div>
 </template>
