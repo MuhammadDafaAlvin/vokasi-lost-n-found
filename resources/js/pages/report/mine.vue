@@ -19,8 +19,19 @@
         class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-slate-900"
         :href="reportRoutes.index().url"
       >
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
         </svg>
         Semua laporan
       </Link>
@@ -50,15 +61,28 @@
         class="mb-5 flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800"
         role="status"
       >
-        <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        <svg
+          class="h-5 w-5 shrink-0"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
         </svg>
         {{ page.props.flash.success }}
       </div>
 
       <div class="mb-4 flex items-center justify-between">
         <p class="text-sm text-slate-500">
-          <span class="font-semibold text-slate-900">{{ props.reports.total }}</span>
+          <span class="font-semibold text-slate-900">{{
+            props.reports.total
+          }}</span>
           laporan dibuat
         </p>
       </div>
@@ -79,14 +103,28 @@
         v-else
         class="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center"
       >
-        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-orange-600">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        <div
+          class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-orange-600"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
           </svg>
         </div>
         <h2 class="mt-4 font-semibold text-slate-900">Belum ada laporan</h2>
         <p class="mt-1 text-sm text-slate-500">
-          Buat laporan pertama Anda untuk mulai mencatat barang hilang atau ditemukan.
+          Buat laporan pertama Anda untuk mulai mencatat barang hilang atau
+          ditemukan.
         </p>
         <Link
           class="mt-5 inline-flex rounded-xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange-700"

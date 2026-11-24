@@ -18,14 +18,17 @@
 
 <template>
   <form class="space-y-3" @submit.prevent="submit">
-    <label class="block text-sm font-semibold text-slate-700" for="comment-body">
+    <label
+      class="block text-sm font-semibold text-slate-700"
+      for="comment-body"
+    >
       Tulis komentar
     </label>
 
     <textarea
       id="comment-body"
       v-model="form.body"
-      class="min-h-28 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm leading-6 outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
+      class="min-h-28 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm leading-6 transition outline-none placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
       maxlength="1000"
       name="body"
       placeholder="Tulis pertanyaan atau informasi tambahan..."

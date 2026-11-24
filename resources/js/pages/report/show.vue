@@ -41,8 +41,19 @@
         class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-slate-900"
         :href="reportRoutes.index().url"
       >
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
         </svg>
         Semua laporan
       </Link>
@@ -55,7 +66,9 @@
         {{ page.props.flash.success }}
       </p>
 
-      <article class="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <article
+        class="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+      >
         <div
           v-if="report.image_url"
           class="h-72 overflow-hidden bg-slate-100 sm:h-96"
@@ -67,9 +80,23 @@
           />
         </div>
 
-        <div v-else class="flex h-48 items-center justify-center bg-slate-100 text-slate-400">
-          <svg class="h-10 w-10" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 19.5h16.5A1.75 1.75 0 0 0 22 17.75V6.25A1.75 1.75 0 0 0 20.25 4.5H3.75A1.75 1.75 0 0 0 2 6.25v11.5A1.75 1.75 0 0 0 3.75 19.5ZM15 8.25h.008v.008H15V8.25Z" />
+        <div
+          v-else
+          class="flex h-48 items-center justify-center bg-slate-100 text-slate-400"
+        >
+          <svg
+            class="h-10 w-10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.3"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 19.5h16.5A1.75 1.75 0 0 0 22 17.75V6.25A1.75 1.75 0 0 0 20.25 4.5H3.75A1.75 1.75 0 0 0 2 6.25v11.5A1.75 1.75 0 0 0 3.75 19.5ZM15 8.25h.008v.008H15V8.25Z"
+            />
           </svg>
         </div>
 
@@ -77,13 +104,23 @@
           <div class="flex flex-wrap items-center gap-2">
             <span
               class="rounded-full px-3 py-1 text-sm font-semibold"
-              :class="report.type === 'lost' ? 'bg-orange-100 text-orange-800' : 'bg-emerald-100 text-emerald-800'"
+              :class="
+                report.type === 'lost'
+                  ? 'bg-orange-100 text-orange-800'
+                  : 'bg-emerald-100 text-emerald-800'
+              "
             >
-              {{ report.type === 'lost' ? 'Barang hilang' : 'Barang ditemukan' }}
+              {{
+                report.type === 'lost' ? 'Barang hilang' : 'Barang ditemukan'
+              }}
             </span>
             <span
               class="rounded-full px-3 py-1 text-sm font-semibold"
-              :class="report.status === 'active' ? 'bg-slate-100 text-slate-700' : 'bg-slate-800 text-white'"
+              :class="
+                report.status === 'active'
+                  ? 'bg-slate-100 text-slate-700'
+                  : 'bg-slate-800 text-white'
+              "
             >
               {{ report.status === 'active' ? 'Aktif' : 'Selesai' }}
             </span>
@@ -95,38 +132,75 @@
             </span>
           </div>
 
-          <h1 class="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">{{ report.title }}</h1>
+          <h1 class="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">
+            {{ report.title }}
+          </h1>
 
           <dl class="mt-6 grid gap-3 sm:grid-cols-2">
             <div class="rounded-xl bg-slate-50 p-4">
-              <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Kategori</dt>
-              <dd class="mt-1 font-medium text-slate-800">{{ report.category }}</dd>
+              <dt
+                class="text-xs font-semibold tracking-wide text-slate-400 uppercase"
+              >
+                Kategori
+              </dt>
+              <dd class="mt-1 font-medium text-slate-800">
+                {{ report.category }}
+              </dd>
             </div>
             <div class="rounded-xl bg-slate-50 p-4">
-              <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Warna</dt>
-              <dd class="mt-1 font-medium text-slate-800">{{ report.color || 'Tidak disebutkan' }}</dd>
+              <dt
+                class="text-xs font-semibold tracking-wide text-slate-400 uppercase"
+              >
+                Warna
+              </dt>
+              <dd class="mt-1 font-medium text-slate-800">
+                {{ report.color || 'Tidak disebutkan' }}
+              </dd>
             </div>
             <div class="rounded-xl bg-slate-50 p-4">
-              <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Lokasi</dt>
-              <dd class="mt-1 font-medium text-slate-800">{{ report.location }}</dd>
+              <dt
+                class="text-xs font-semibold tracking-wide text-slate-400 uppercase"
+              >
+                Lokasi
+              </dt>
+              <dd class="mt-1 font-medium text-slate-800">
+                {{ report.location }}
+              </dd>
             </div>
             <div class="rounded-xl bg-slate-50 p-4">
-              <dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Tanggal kejadian</dt>
-              <dd class="mt-1 font-medium text-slate-800">{{ formattedEventDate() }}</dd>
+              <dt
+                class="text-xs font-semibold tracking-wide text-slate-400 uppercase"
+              >
+                Tanggal kejadian
+              </dt>
+              <dd class="mt-1 font-medium text-slate-800">
+                {{ formattedEventDate() }}
+              </dd>
             </div>
           </dl>
 
           <div class="mt-6 border-t border-slate-100 pt-6">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Pelapor</p>
-            <p class="mt-1 font-medium text-slate-800">{{ report.user?.name }}</p>
+            <p
+              class="text-xs font-semibold tracking-wide text-slate-400 uppercase"
+            >
+              Pelapor
+            </p>
+            <p class="mt-1 font-medium text-slate-800">
+              {{ report.user?.name }}
+            </p>
           </div>
 
           <div class="mt-6">
             <h2 class="font-semibold text-slate-900">Ciri-ciri barang</h2>
-            <p class="mt-2 whitespace-pre-line leading-7 text-slate-600">{{ report.description }}</p>
+            <p class="mt-2 leading-7 whitespace-pre-line text-slate-600">
+              {{ report.description }}
+            </p>
           </div>
 
-          <div v-if="canEdit" class="mt-6 flex flex-wrap gap-2 border-t border-slate-100 pt-5">
+          <div
+            v-if="canEdit"
+            class="mt-6 flex flex-wrap gap-2 border-t border-slate-100 pt-5"
+          >
             <Link
               class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
               :href="reportRoutes.edit(report.id).url"
@@ -146,14 +220,19 @@
         </div>
       </article>
 
-      <section class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+      <section
+        class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
+      >
         <h2 class="text-xl font-semibold">Komentar</h2>
         <div class="mt-5">
           <CommentList :comments="comments" :report-id="report.id" />
         </div>
         <div class="mt-6 border-t border-slate-100 pt-6">
           <CommentForm v-if="canComment" :report-id="report.id" />
-          <p v-else class="rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
+          <p
+            v-else
+            class="rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-600"
+          >
             Komentar baru tidak tersedia untuk laporan tersembunyi atau selesai.
           </p>
         </div>

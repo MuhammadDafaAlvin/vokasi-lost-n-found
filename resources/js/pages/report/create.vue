@@ -16,21 +16,37 @@
         class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-slate-900"
         :href="reportRoutes.index().url"
       >
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
         </svg>
         Kembali ke laporan
       </Link>
 
       <header class="mt-5 mb-6">
         <p class="text-sm font-medium text-orange-700">Laporan baru</p>
-        <h1 class="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">Buat laporan barang</h1>
+        <h1 class="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Buat laporan barang
+        </h1>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-          Isi informasi yang jelas agar laporan mudah dikenali dan ditindaklanjuti.
+          Isi informasi yang jelas agar laporan mudah dikenali dan
+          ditindaklanjuti.
         </p>
       </header>
 
-      <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+      <section
+        class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
+      >
         <ReportForm
           :action-url="reportRoutes.store().url"
           :categories="categories"

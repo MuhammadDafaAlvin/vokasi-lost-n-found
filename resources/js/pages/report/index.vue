@@ -27,8 +27,11 @@
           <h1 class="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">
             Laporan barang
           </h1>
-          <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">
-            Temukan barang hilang atau lihat barang yang baru ditemukan di lingkungan Vokasi.
+          <p
+            class="mt-2 max-w-xl text-sm leading-6 text-slate-600 sm:text-base"
+          >
+            Temukan barang hilang atau lihat barang yang baru ditemukan di
+            lingkungan Vokasi.
           </p>
         </div>
 
@@ -65,9 +68,22 @@
         v-else
         class="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center"
       >
-        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m1.35-5.15a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z" />
+        <div
+          class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-4.35-4.35m1.35-5.15a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z"
+            />
           </svg>
         </div>
         <h2 class="mt-4 font-semibold text-slate-900">

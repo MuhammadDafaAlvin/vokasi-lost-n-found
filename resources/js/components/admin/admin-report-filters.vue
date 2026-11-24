@@ -64,7 +64,9 @@
 </script>
 
 <template>
-  <section class="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+  <section
+    class="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+  >
     <div class="mb-4 flex items-center justify-between">
       <h2 class="text-sm font-semibold text-slate-900">Filter laporan</h2>
       <button
@@ -81,13 +83,16 @@
       @submit.prevent="submit"
     >
       <div>
-        <label class="mb-1.5 block text-xs font-medium text-slate-600" for="admin-report-search">
+        <label
+          class="mb-1.5 block text-xs font-medium text-slate-600"
+          for="admin-report-search"
+        >
           Nama barang
         </label>
         <input
           id="admin-report-search"
           v-model="form.q"
-          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
+          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 transition outline-none placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
           maxlength="100"
           placeholder="Cari nama barang"
           type="search"
@@ -95,13 +100,16 @@
       </div>
 
       <div>
-        <label class="mb-1.5 block text-xs font-medium text-slate-600" for="admin-report-type">
+        <label
+          class="mb-1.5 block text-xs font-medium text-slate-600"
+          for="admin-report-type"
+        >
           Jenis
         </label>
         <select
           id="admin-report-type"
           v-model="form.type"
-          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
+          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 transition outline-none focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
         >
           <option value="">Semua jenis</option>
           <option value="lost">Hilang</option>
@@ -110,13 +118,16 @@
       </div>
 
       <div>
-        <label class="mb-1.5 block text-xs font-medium text-slate-600" for="admin-report-status">
+        <label
+          class="mb-1.5 block text-xs font-medium text-slate-600"
+          for="admin-report-status"
+        >
           Status laporan
         </label>
         <select
           id="admin-report-status"
           v-model="form.status"
-          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
+          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 transition outline-none focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
         >
           <option value="">Semua status</option>
           <option value="active">Aktif</option>
@@ -134,7 +145,7 @@
         <select
           id="admin-report-visibility"
           v-model="form.visibility"
-          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
+          class="h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm text-slate-900 transition outline-none focus:border-blue-500 focus:bg-white focus:ring-3 focus:ring-blue-100"
         >
           <option value="">Semua laporan</option>
           <option value="visible">Terlihat</option>

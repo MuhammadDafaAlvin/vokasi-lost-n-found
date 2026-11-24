@@ -48,7 +48,9 @@
     <div class="overflow-x-auto">
       <table class="w-full min-w-225 text-left text-sm">
         <thead class="border-b border-slate-200 bg-slate-50/80">
-          <tr class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+          <tr
+            class="text-[11px] font-semibold tracking-wider text-slate-500 uppercase"
+          >
             <th class="px-5 py-3.5">Barang</th>
             <th class="px-4 py-3.5">Jenis / kategori</th>
             <th class="px-4 py-3.5">Pelapor</th>
@@ -126,7 +128,7 @@
 
             <td class="px-5 py-4 text-right">
               <button
-                class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 whitespace-nowrap shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold whitespace-nowrap text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                 :disabled="visibilityForm.processing"
                 type="button"
                 @click="toggleVisibility(report.id, report.is_hidden)"
@@ -146,9 +148,16 @@
     </div>
   </section>
 
-  <section v-else class="rounded-2xl border border-slate-200 bg-white p-10 text-center">
-    <p class="text-sm font-semibold text-slate-700">Tidak ada laporan yang ditemukan</p>
-    <p class="mt-1 text-xs text-slate-500">Coba ubah atau reset filter pencarian.</p>
+  <section
+    v-else
+    class="rounded-2xl border border-slate-200 bg-white p-10 text-center"
+  >
+    <p class="text-sm font-semibold text-slate-700">
+      Tidak ada laporan yang ditemukan
+    </p>
+    <p class="mt-1 text-xs text-slate-500">
+      Coba ubah atau reset filter pencarian.
+    </p>
   </section>
 
   <nav

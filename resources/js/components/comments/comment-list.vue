@@ -61,13 +61,16 @@
         </button>
       </div>
 
-      <p class="mt-3 whitespace-pre-line leading-7 text-slate-600">
+      <p class="mt-3 leading-7 whitespace-pre-line text-slate-600">
         {{ comment.body }}
       </p>
     </article>
   </div>
 
-  <p v-else class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-5 text-center text-sm text-slate-500">
+  <p
+    v-else
+    class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-5 text-center text-sm text-slate-500"
+  >
     Belum ada komentar. Jadilah yang pertama berkomentar.
   </p>
 </template>
