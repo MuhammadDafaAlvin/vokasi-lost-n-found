@@ -231,7 +231,7 @@
       />
 
       <p class="mt-1 text-xs text-gray-500">
-        JPG, PNG, atau WebP, maksimal 5 MB.
+        JPG, PNG, atau WebP, maksimal 2 MB.
       </p>
 
       <p v-if="report?.image_url" class="mt-2 text-sm text-gray-600">
