@@ -30,8 +30,8 @@ return [
     |
     */
     'image' => [
-        // Maximum allowed image size in kilobytes (5 MB).
-        'max_kilobytes' => 5120,
+        // Maximum allowed image size in kilobytes (2 MB).
+        'max_kilobytes' => 2000,
 
         // Allowed image file extensions.
         'mimes' => [

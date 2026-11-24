@@ -20,10 +20,10 @@ use Illuminate\Notifications\Notifiable;
  * @property string $email
  * @property string|null $email_verified_at
  * @property string $password
+ * @property string $role
  * @property string|null $remember_token
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property string $role
  * @property-read Collection<int, Comment> $comments
  * @property-read int|null $comments_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
