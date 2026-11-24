@@ -48,16 +48,17 @@
 </script>
 
 <template>
-  <form class="space-y-5" @submit.prevent="submit">
+  <form class="space-y-6" @submit.prevent="submit">
+    <div class="grid gap-5 sm:grid-cols-2">
     <div>
-      <label class="block text-sm font-medium" for="type">
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="type">
         Jenis laporan
       </label>
 
       <select
         id="type"
         v-model="form.type"
-        class="mt-1 w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none transition focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         required
       >
         <option value="lost">Barang hilang</option>
@@ -70,13 +71,14 @@
     </div>
 
     <div>
-      <label class="block text-sm font-medium" for="title"> Nama barang </label>
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="title"> Nama barang </label>
 
       <input
         id="title"
         v-model="form.title"
-        class="mt-1 w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         maxlength="150"
+        placeholder="Contoh: Dompet hitam"
         required
       />
 
@@ -85,13 +87,16 @@
       </p>
     </div>
 
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2">
     <div>
-      <label class="block text-sm font-medium" for="category"> Kategori </label>
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="category"> Kategori </label>
 
       <select
         id="category"
         v-model="form.category"
-        class="mt-1 w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none transition focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         required
       >
         <option disabled value="">Pilih kategori</option>
@@ -111,14 +116,32 @@
     </div>
 
     <div>
-      <label class="block text-sm font-medium" for="description">
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="color"> Warna </label>
+
+      <input
+        id="color"
+        v-model="form.color"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
+        maxlength="50"
+        placeholder="Opsional"
+      />
+
+      <p v-if="form.errors.color" class="mt-1 text-sm text-red-700">
+        {{ form.errors.color }}
+      </p>
+    </div>
+    </div>
+
+    <div>
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="description">
         Ciri-ciri barang
       </label>
 
       <textarea
         id="description"
         v-model="form.description"
-        class="mt-1 min-h-32 w-full rounded-lg border px-3 py-2"
+        class="min-h-32 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm leading-6 outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
+        placeholder="Tambahkan bentuk, merek, ukuran, atau ciri khas barang..."
         required
       ></textarea>
 
@@ -127,31 +150,18 @@
       </p>
     </div>
 
+    <div class="grid gap-5 sm:grid-cols-2">
     <div>
-      <label class="block text-sm font-medium" for="color"> Warna </label>
-
-      <input
-        id="color"
-        v-model="form.color"
-        class="mt-1 w-full rounded-lg border px-3 py-2"
-        maxlength="50"
-      />
-
-      <p v-if="form.errors.color" class="mt-1 text-sm text-red-700">
-        {{ form.errors.color }}
-      </p>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium" for="location">
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="location">
         Lokasi kejadian
       </label>
 
       <input
         id="location"
         v-model="form.location"
-        class="mt-1 w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         maxlength="150"
+        placeholder="Contoh: Gedung A lantai 2"
         required
       />
 
@@ -161,14 +171,14 @@
     </div>
 
     <div>
-      <label class="block text-sm font-medium" for="event_date">
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700" for="event_date">
         Tanggal kejadian
       </label>
 
       <input
         id="event_date"
         v-model="form.event_date"
-        class="mt-1 w-full rounded-lg border px-3 py-2"
+        class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none transition focus:border-orange-400 focus:bg-white focus:ring-3 focus:ring-orange-100"
         type="date"
         required
       />
@@ -177,15 +187,16 @@
         {{ form.errors.event_date }}
       </p>
     </div>
+    </div>
 
-    <div>
-      <label class="block text-sm font-medium" for="image">
+    <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
+      <label class="block text-sm font-semibold text-slate-700" for="image">
         Foto opsional
       </label>
 
       <input
         id="image"
-        class="mt-1 block w-full text-sm"
+        class="mt-2 block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-white file:px-3 file:py-2 file:text-sm file:font-medium file:text-slate-700 file:shadow-sm"
         type="file"
         accept="image/jpeg,image/png,image/webp"
         @change="selectImage"
@@ -204,11 +215,13 @@
       </p>
     </div>
 
-    <button
-      class="rounded-lg bg-orange-500 px-5 py-2.5 font-medium text-white disabled:opacity-50"
-      :disabled="form.processing"
-    >
-      {{ form.processing ? 'Menyimpan...' : submitLabel }}
-    </button>
+    <div class="flex justify-end border-t border-slate-100 pt-5">
+      <button
+        class="rounded-xl bg-orange-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700 disabled:opacity-50"
+        :disabled="form.processing"
+      >
+        {{ form.processing ? 'Menyimpan...' : submitLabel }}
+      </button>
+    </div>
   </form>
 </template>

@@ -33,7 +33,7 @@
 </script>
 
 <template>
-  <div v-if="comments.length" class="divide-y">
+  <div v-if="comments.length" class="divide-y divide-slate-100">
     <article
       v-for="comment in comments"
       :key="comment.id"
@@ -41,18 +41,18 @@
     >
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p class="font-medium text-gray-900">
+          <p class="font-medium text-slate-900">
             {{ comment.user.name }}
           </p>
 
-          <time class="text-sm text-gray-500" :datetime="comment.created_at">
+          <time class="text-xs text-slate-400" :datetime="comment.created_at">
             {{ formatDate(comment.created_at) }}
           </time>
         </div>
 
         <button
           v-if="comment.canDelete"
-          class="text-sm text-red-700 underline disabled:opacity-50"
+          class="text-sm font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
           :disabled="deleteForm.processing"
           type="button"
           @click="deleteComment(comment.id)"
@@ -61,13 +61,13 @@
         </button>
       </div>
 
-      <p class="mt-3 whitespace-pre-line text-gray-700">
+      <p class="mt-3 whitespace-pre-line leading-7 text-slate-600">
         {{ comment.body }}
       </p>
     </article>
   </div>
 
-  <p v-else class="rounded-lg bg-gray-50 p-4 text-sm text-gray-600">
+  <p v-else class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-5 text-center text-sm text-slate-500">
     Belum ada komentar. Jadilah yang pertama berkomentar.
   </p>
 </template>

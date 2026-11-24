@@ -11,8 +11,7 @@
   const page = usePage<{ auth: Auth }>();
   const logoutForm = useForm({});
 
-  const logoUrl =
-    'https://statik.unesa.ac.id/profileunesa_konten_statik/uploads/vokasi/gallery/d5a04d59-54ae-4aae-a3dd-f624420c96d4.png';
+  const logoUrl = '/images/logo-web.png';
 
   function logout(): void {
     logoutForm.post(authRoutes.logout().url);
@@ -27,7 +26,7 @@
     >
       <Link class="flex items-center gap-3" :href="home().url">
         <img
-          class="h-12 w-12 rounded-full bg-white object-contain p-1"
+          class="h-16 w-16 bg-white object-contain p-0.5"
           :src="logoUrl"
           alt="Logo Fakultas Vokasi UNESA"
         />
