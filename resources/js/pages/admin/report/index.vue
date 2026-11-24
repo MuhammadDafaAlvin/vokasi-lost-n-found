@@ -31,12 +31,18 @@
   <AppHeader />
   <main class="min-h-screen bg-slate-50">
     <div class="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-10">
-      <header class="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <header
+        class="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+      >
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
+          <p
+            class="mb-2 text-xs font-semibold tracking-[0.18em] text-blue-700 uppercase"
+          >
             Panel admin
           </p>
-          <h1 class="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+          <h1
+            class="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl"
+          >
             Moderasi laporan
           </h1>
           <p class="mt-2 text-sm text-slate-500 sm:text-base">
@@ -58,29 +64,45 @@
         class="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4"
         aria-label="Ringkasan laporan"
       >
-        <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
-          <p class="text-xs font-medium text-slate-500 sm:text-sm">Semua laporan</p>
+        <article
+          class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+        >
+          <p class="text-xs font-medium text-slate-500 sm:text-sm">
+            Semua laporan
+          </p>
           <p class="mt-2 text-2xl font-bold text-slate-950 sm:text-3xl">
             {{ stats.total }}
           </p>
         </article>
 
-        <article class="rounded-2xl border border-blue-100 bg-blue-50/60 p-4 shadow-sm sm:p-5">
-          <p class="text-xs font-medium text-blue-700 sm:text-sm">Laporan aktif</p>
+        <article
+          class="rounded-2xl border border-blue-100 bg-blue-50/60 p-4 shadow-sm sm:p-5"
+        >
+          <p class="text-xs font-medium text-blue-700 sm:text-sm">
+            Laporan aktif
+          </p>
           <p class="mt-2 text-2xl font-bold text-blue-800 sm:text-3xl">
             {{ stats.active }}
           </p>
         </article>
 
-        <article class="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 shadow-sm sm:p-5">
-          <p class="text-xs font-medium text-emerald-700 sm:text-sm">Laporan selesai</p>
+        <article
+          class="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 shadow-sm sm:p-5"
+        >
+          <p class="text-xs font-medium text-emerald-700 sm:text-sm">
+            Laporan selesai
+          </p>
           <p class="mt-2 text-2xl font-bold text-emerald-800 sm:text-3xl">
             {{ stats.resolved }}
           </p>
         </article>
 
-        <article class="rounded-2xl border border-amber-100 bg-amber-50/70 p-4 shadow-sm sm:p-5">
-          <p class="text-xs font-medium text-amber-700 sm:text-sm">Disembunyikan</p>
+        <article
+          class="rounded-2xl border border-amber-100 bg-amber-50/70 p-4 shadow-sm sm:p-5"
+        >
+          <p class="text-xs font-medium text-amber-700 sm:text-sm">
+            Disembunyikan
+          </p>
           <p class="mt-2 text-2xl font-bold text-amber-800 sm:text-3xl">
             {{ stats.hidden }}
           </p>
