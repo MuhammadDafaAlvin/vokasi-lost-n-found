@@ -2,7 +2,6 @@
   import { Head, Link, useForm } from '@inertiajs/vue3';
   import loginRoutes from '@/routes/login';
   import registerRoutes from '@/routes/register';
-  import AppHeader from '@/components/app-header.vue';
 
   defineProps<{
     registrationAvailable: boolean;
@@ -113,13 +112,21 @@
         />
       </div>
 
-      <button
-        class="w-full rounded-lg bg-orange-600 px-4 py-2 font-semibold text-white hover:bg-orange-700 disabled:opacity-50"
-        :disabled="form.processing || !registrationAvailable"
-        type="submit"
-      >
-        {{ form.processing ? 'Memproses...' : 'Daftar' }}
-      </button>
+      <div class="flex gap-3">
+        <Link
+          class="flex-1 rounded-lg border border-slate-300 px-4 py-2 text-center font-semibold text-slate-700 hover:bg-slate-50"
+          href="/"
+        >
+          Kembali
+        </Link>
+        <button
+          class="flex-1 rounded-lg bg-orange-600 px-4 py-2 font-semibold text-white hover:bg-orange-700 disabled:opacity-50"
+          :disabled="form.processing || !registrationAvailable"
+          type="submit"
+        >
+          {{ form.processing ? 'Memproses...' : 'Daftar' }}
+        </button>
+      </div>
     </form>
 
     <p class="mt-5 text-sm text-slate-600">

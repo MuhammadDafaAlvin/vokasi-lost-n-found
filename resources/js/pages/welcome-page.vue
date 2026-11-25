@@ -11,10 +11,8 @@
 
 <template>
   <Head title="Lost & Found Fakultas Vokasi UNESA" />
-
   <div class="min-h-svh bg-[#f7f8fa] text-slate-900">
-    <AppHeader />
-
+    <AppHeader v-if="page.props.auth.user" />
     <main
       class="mx-auto grid min-h-[calc(100svh-81px)] max-w-7xl items-center gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[1.1fr_0.9fr]"
     >
@@ -66,10 +64,9 @@
             </Link>
           </template>
         </div>
-
-        <p v-if="page.props.auth.user" class="mt-4 text-sm text-slate-500">
+        <!-- <p v-if="page.props.auth.user" class="mt-4 text-sm text-slate-500">
           Anda masuk sebagai {{ page.props.auth.user.role }}.
-        </p>
+        </p> -->
       </section>
 
       <aside class="hidden lg:block">
