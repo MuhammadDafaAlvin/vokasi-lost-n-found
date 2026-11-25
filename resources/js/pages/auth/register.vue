@@ -51,6 +51,7 @@
           class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="text"
           autocomplete="name"
+          placeholder="John Maximillian"
           required
         />
         <p v-if="form.errors.name" class="mt-1 text-sm text-red-700">
@@ -68,6 +69,7 @@
           class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="email"
           autocomplete="email"
+          placeholder="john@mhs.unesa.ac.id"
           required
         />
         <p v-if="form.errors.email" class="mt-1 text-sm text-red-700">
@@ -84,6 +86,7 @@
           v-model="form.password"
           class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="password"
+          placeholder="********"
           autocomplete="new-password"
           required
         />
@@ -104,6 +107,7 @@
           v-model="form.password_confirmation"
           class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="password"
+          placeholder="********"
           autocomplete="new-password"
           required
         />

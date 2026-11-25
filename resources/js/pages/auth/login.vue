@@ -37,6 +37,7 @@
           v-model="form.email"
           class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="email"
+          placeholder="john@mhs.unesa.ac.id"
           autocomplete="email"
           required
         />
@@ -54,6 +55,7 @@
           v-model="form.password"
           class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"
           type="password"
+          placeholder="********"
           autocomplete="current-password"
           required
         />
