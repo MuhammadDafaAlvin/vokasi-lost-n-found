@@ -10,6 +10,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Report::class, ReportPolicy::class);
+
+        if (app()->isProduction()) {
+            URL::forceScheme('https');
+        }
 
         $this->configureDefaults();
     }
